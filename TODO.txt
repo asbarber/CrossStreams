@@ -1,0 +1,94 @@
+0. Split this repo for frontend and for backend
+1. Fix html for videos, and examples for websockets and http
+2. Python coding standards (imports, camelcase)
+3. Modify cross_streams.sh to check python version
+4. Make API doc (includes architecture and http/ws request formats)
+5. Stop using db.json and use a real database system
+6. Setup HTTPS
+7. Fix how a HTTP resource will be handled (e.g. a command param?)
+
+8. Deprecate ContentService
+
+
+Architecture
+-------------------------------------------------------------------------------
+
+	controllers (http)	-->		|				|				|			    |
+								|	Resources	|	Services 	|		DB 		|
+	sockets		(ws)	-->		|				|				|				|
+
+-------------------------------------------------------------------------------
+
+
+RESOURCES
+-------------------------------------------------------------------------------
+
+	FileResource
+	------------
+	listFiles 				GET 	/files
+	addFile					POST	/files
+	getFile					GET		/files/@id
+	updateFile				POST	/files/@id 				?tag&permission&description
+	deleteFile				DELETE 	/files/@id
+	getSegment				GET 	/files/@id/segment 		?numUsers&sequenceNum
+	vote					POST	/files/@id/vote 		?username&isUpvote
+
+	UserResource
+	------------
+	listUsers				GET 	/users
+	addUser 				POST 	/users
+	getUser 				GET 	/users/@username
+	updateUser 				POST 	/users/@username		?password
+	deleteUser 				DELETE 	/users/@username
+
+	SessionResource
+	---------------
+	addSession 				POST 	/sessions 				?owner?fileId
+	joinSession 			POST 	/sessions/@id 			?username
+	deleteSession 			DELETE 	/sessions/@id
+	leaveSession			POST	/sessions/@id/leave 	?username
+	getNextSegment 			GET 	/sessions/@id/segment 	?username
+
+	FriendsResource
+	---------------
+	listFriends 			GET 	/friends 				?usernameMe
+	addFriend 				POST 	/friends 				?usernameMe&usernameOther
+	deleteFriend 			DELETE 	/friends 				?usernameMe&usernameOther
+
+-------------------------------------------------------------------------------
+
+
+DB
+-------------------------------------------------------------------------------
+
+	FileDB
+	------
+	+ String tag
+	+ int id
+	+ String owner
+	+ int permissions
+	+ String description
+	+ String filepath
+	+ int upvote
+	+ int downvote
+
+	UserDB
+	------
+	+ String username
+	+ String password
+
+	SessionDB
+	---------
+	+ int id
+	+ String[] usernames
+	+ String fileId
+	+ int sequenceNum
+
+	FriendDB
+	--------
+	+ usernameA
+	+ hasAcceptedA
+	+ usernameB
+	+ hasAcceptedB
+
+-------------------------------------------------------------------------------

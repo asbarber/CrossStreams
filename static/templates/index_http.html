@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+		<script type="text/javascript" src="{{ static_url("js/index_http.js") }}"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+
+		<!-- DOWNLOADS AN IMAGE -->
+		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseImage" aria-expanded="false" aria-controls="collapseImage">
+			Image Example
+		</button>
+		<div class="collapse" id="collapseImage">
+			<div class="well">
+				<input type="button" onclick="downloadImage()" value="Download Image" />
+				<img id="streamedImage" />
+			</div>		
+		</div>
+
+		<!-- DOWNLOADS A VIDEO -->
+		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseVideo" aria-expanded="false" aria-controls="collapseVideo">
+			Video Example
+		</button>
+		<div class="collapse" id="collapseVideo">
+			<div class="well">
+				<input type="button" onclick="downloadVideo()" value="Download Video" />
+				<video controls> 
+				 	<source id="streamedVideo" type="video/mp4" /> 
+				</video>		
+			</div>		
+		</div>
+
+		<!-- DOWNLOADS A TEXT BLOB -->
+		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseText" aria-expanded="false" aria-controls="collapseText">
+			Text Example
+		</button>
+		<div class="collapse" id="collapseText">
+			<div class="well">
+				<input type="button" onclick="downloadText()" value="Download Text" />
+				<textarea id="streamedText"></textarea>				
+			</div>		
+		</div>			
+
+		<input type="button" onclick="listFiles()" value="List Files" />
+		<input type="button" onclick="addFile()" value="Add File" />
+		<input type="button" onclick="getFile()" value="Get File" />
+		<input type="button" onclick="updateFile()" value="Update File" />
+		<input type="button" onclick="deleteFile()" value="Delete File" />
+		<input type="button" onclick="voteFile()" value="Vote File" />
+	</body>
+</html>

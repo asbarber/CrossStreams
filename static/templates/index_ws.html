@@ -1,0 +1,18 @@
+<html>
+	<head>
+		<script type="text/javascript" src="{{ static_url("js/index_ws.js") }}"></script>
+	</head>
+
+	<body>
+		<input type="button" onclick="downloadImage()" value="Download Image" />
+		<img id="streamedImage" />
+
+		<input type="button" onclick="downloadVideo()" value="Download Video" />
+		<video controls> 
+		 	<source id="streamedVideo" type="video/mp4" /> 
+		</video>		
+
+		<input type="button" onclick="downloadText()" value="Download Text" />
+		<textarea id="streamedText"></textarea>
+	</body>
+</html>
